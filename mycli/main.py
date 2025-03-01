@@ -45,6 +45,7 @@ def main():
             inquirer.Text(
                 "project_name",
                 message="Enter Project name",
+                validate = lambda _,x :x.strip() != "" or "Project name is required"
             ),
             inquirer.Text(
                 "project_path",
@@ -53,7 +54,7 @@ def main():
             ),
             inquirer.Confirm(
                 "confirm_path",
-                message="Are you sure you want to create the project here?",
+                message="Are you sure you want to create the project here? [default = Yes]",
                 default=True,
             ),
         ]
@@ -67,7 +68,6 @@ def main():
         if answers['project'] == 'Django project':
             CreateProject(
                 project_name=answers['project_name'],
-                project_path=answers['project_path']
             ).create_django_project()
 
 

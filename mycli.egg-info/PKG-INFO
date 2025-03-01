@@ -1,0 +1,6 @@
+Metadata-Version: 2.2
+Name: mycli
+Version: 0.2
+License-File: LICENSE
+Requires-Dist: inquirer
+Dynamic: requires-dist
