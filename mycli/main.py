@@ -12,7 +12,7 @@ from rich.console import Console
 
 def main():
     parser = argparse.ArgumentParser(
-        description="A simple CLI tool for project setup automation made to make me look cool."
+        description="A simple CLI tool for project setup automation."
     )
 
     parser.add_argument(
@@ -31,7 +31,13 @@ def main():
     if args.create:
         # Define the project options
         project_choices = [
-            "Django project",
+            "Django",
+            "Flutter",
+            "React Native"
+            "React",
+            "Flask",
+            "Express.js",
+            "Node.js",
         ]
 
         # Use inquirer to prompt the user for a selection
@@ -59,17 +65,35 @@ def main():
             ),
         ]
 
+        # getting question answers
         answers = inquirer.prompt(questions)
 
         if not answers["confirm_path"]:
             console.print("[red]❌ Project creation canceled.[/red]")
             exit(0)
 
-        if answers['project'] == 'Django project':
-            CreateProject(
+        # project name
+        project = CreateProject(
                 project_name=answers['project_name'],
-            ).create_django_project()
-
+            )
+        
+        
+        # mapping project name with creation function
+        create_project = {
+            "Django":project.create_django_project,
+            "Flutter":None,
+            "React Native":None,
+            "React":None,
+            "Flask":None,
+            "Express.js":None,
+            "Node.js":None,
+        }
+        
+        # creating project based on user input
+        if answers['project'] == 'Django':
+            create_project[answers['project']]()
+        
+        
 
 if __name__ == "__main__":
     main()

@@ -22,7 +22,7 @@ class CreateProject:
 
     def create_django_project(self):
         """Creates a Django project inside a virtual environment."""
-        console.print(f"📦 Setting up Django project: [bold cyan]{self.project_name}[/bold cyan] in [yellow]{self.project_path}[/yellow]...")
+        console.print(f"📦 Setting up your  Django project: [bold cyan]{self.project_name}[/bold cyan] in [yellow]{self.project_path}[/yellow]")
 
         # Ensure the directory exists
         os.makedirs(self.project_path, exist_ok=True)
@@ -34,7 +34,7 @@ class CreateProject:
         os.chdir(self.project_path)
 
         # Create virtual environment
-        console.print("🐍 Creating virtual environment...")
+        console.print("📦 Creating virtual environment...")
         self.run_command(f"python -m venv {self.venv_name}")
 
         # Determine OS and set paths correctly
@@ -50,9 +50,26 @@ class CreateProject:
         self.run_command(f"{pip_path} install django")
 
         # Create Django project
-        console.print(f"🏗️ Creating Django project: [bold cyan]{self.project_name}[/bold cyan] in [yellow]{self.project_path}[/yellow]...")
+        console.print(f"🦾 Creating Django project: [bold cyan]{self.project_name}[/bold cyan] in [yellow]{self.project_path}[/yellow]...")
         
         self.run_command(f"{django_admin_path} startproject {self.project_name} .", cwd=self.project_path)
 
         console.print("\n✅ [bold green]Django project setup complete![/bold green]")
 
+    def create_flutter_project(self):
+        pass
+    
+    def create_reactnative_project(self):
+        pass
+    
+    def create_react_project(self):
+        pass 
+    
+    def create_flask_project(self):
+        pass 
+    
+    def create_express_project(self):
+        pass 
+    
+    def create_node_project(self):
+        pass
