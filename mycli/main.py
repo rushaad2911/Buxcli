@@ -23,10 +23,10 @@ def main():
 
     # Check if any argument is provided
     if len(sys.argv) == 1:
-        parser.print_help()
-        exit()
+        args = parser.parse_args(['-c'])
+    else:
 
-    args = parser.parse_args()
+        args = parser.parse_args()
 
     if args.create:
         # Define the project options
@@ -51,7 +51,7 @@ def main():
             inquirer.Text(
                 "project_name",
                 message="Enter Project name",
-                validate = lambda _,x :x.strip() != "" or "Project name is required"
+                validate=lambda _, x: (bool(x.strip()) and x.strip() != "")
             ),
             inquirer.Text(
                 "project_path",
@@ -67,9 +67,11 @@ def main():
 
         # getting question answers
         answers = inquirer.prompt(questions)
-
+        
+        
+            
         if not answers["confirm_path"]:
-            console.print("[red]❌ Project creation canceled.[/red]")
+            Console.print("[red]❌ Project creation canceled, path not found.[/red]")
             exit(0)
 
         # project name
@@ -77,11 +79,10 @@ def main():
                 project_name=answers['project_name'],
             )
         
-        
         # mapping project name with creation function
         create_project = {
             "Django":project.create_django_project,
-            "Flutter":None,
+            "Flutter":project.create_flutter_project,
             "React Native":None,
             "React":None,
             "Flask":None,
@@ -91,7 +92,9 @@ def main():
         
         # creating project based on user input
         if answers['project'] == 'Django':
-            create_project[answers['project']]()
+            project.create_django_project()
+        elif answers['project']=='Flutter':
+            project.create_flutter_project()
         
         
 

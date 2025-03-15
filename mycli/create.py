@@ -2,7 +2,7 @@ import os
 import subprocess
 import platform
 from rich.console import Console
-
+from .check import *
 console = Console()
 
 
@@ -57,8 +57,11 @@ class CreateProject:
         console.print("\n✅ [bold green]Django project setup complete![/bold green]")
 
     def create_flutter_project(self):
-        pass
-    
+        result = is_flutter_installed()
+        if result:
+            console.print("Creating flutter app")
+            self.run_command(f"flutter create {self.project_name}")
+            console.print("Done creating Flutter Project")
     def create_reactnative_project(self):
         pass
     
