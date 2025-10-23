@@ -1,21 +1,23 @@
 from setuptools import setup, find_packages
 
 setup(
-    name="mycli",  # Package name
-    version="1.0",  # Version
-    packages=find_packages(),  # Finds all packages automatically
-    install_requires=[  # Dependencies
+    name="buxcli",
+    version="1.0.4",  
+    packages=find_packages(),
+    install_requires=[
         "inquirer",
-        "rich"
+        "rich",
+        "click",
+        "dotenv",
     ],
-    entry_points={  # CLI command
+    entry_points={
         "console_scripts": [
-            "mycli=mycli.main:main",
+            "buxcli=buxcli.main:cli",
         ],
     },
     author="Mohd. Rushaad Buxy",
     author_email="m.rushaadq@gmail.com",
-    description="A simple CLI tool for project setup automation.",
+    description="A simple CLI tool for alert you about your CLI.",
     long_description=open("README.md").read(),
     long_description_content_type="text/markdown",
     url="https://github.com/rushaad2911/Mycli",

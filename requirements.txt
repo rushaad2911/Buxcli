@@ -1,5 +1,7 @@
 rich
 inquirer
-setuptools
+setuptools==80.9.0
 wheel
 twine
+click==8.3.0
+dotenv==0.9.9
