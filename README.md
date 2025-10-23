@@ -1,8 +1,4 @@
-# buxcli 🚀
-
-[![PyPI version](https://img.shields.io/pypi/v/buxcli)](https://pypi.org/project/buxcli/) 
-[![Python Version](https://img.shields.io/pypi/pyversions/buxcli)](https://pypi.org/project/buxcli/)
-[![License](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
+# Buxcli 🚀
 
 **buxcli** is a professional command-line tool that runs shell commands and provides **automatic email notifications** for success, failure, or server startup. Perfect for developers and DevOps engineers who want real-time notifications without constantly monitoring terminals.
 
