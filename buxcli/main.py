@@ -87,7 +87,7 @@ def run_command(command_list):
 @click.option("--version", is_flag=True, help="Show current BuxCLI version")
 @click.option("--reconfig",is_flag=True, help="Reconfigure email Credentials")
 @click.pass_context
-def cli(ctx, cmd, reconfig):
+def cli(ctx, cmd, reconfig,version):
 
 
     # Show version and exit
