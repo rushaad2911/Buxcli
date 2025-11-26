@@ -54,11 +54,13 @@ def run_command(command_list):
     ]
 
     try:
-        for line in process.stdout:
+        for line in iter(process.stdout.readline, ""):
             click.echo(line, nl=False)
+
             if any(keyword in line.lower() for keyword in keywords) and not server_started:
                 server_started = True
-                send_email(mail_id, password, "🚀 Server Started", f"{command} started successfully!")
+                send_email(mail_id, password, "🚀 Server Started",
+                           f"{command} started successfully!")
 
         process.wait()
 
@@ -68,32 +70,43 @@ def run_command(command_list):
             send_email(mail_id, password, "❌ Failure", f"Command failed: {command}")
 
     except KeyboardInterrupt:
-        click.echo(click.style("\n🛑 Command interrupted by user.", fg="red", bold=True))
-        process.terminate()
-        # send_email(mail_id, password, "🛑 Interrupted", f"Command interrupted: {command}")
+        click.echo(click.style("\n🛑 Keyboard interrupt received — stopping command...", fg="red", bold=True))
 
+        try:
+            process.terminate()   # Try graceful termination
+            process.wait(timeout=3)
+        except Exception:
+            process.kill()        # Force kill if terminate doesn't work
+
+        click.echo(click.style("✔ Command stopped.", fg="yellow"))
+        return
 
 
 @click.group(cls=BuxCLI, invoke_without_command=True)
 @click.argument("cmd", nargs=-1)
 @click.option("--reconfig",is_flag=True, help="Reconfigure email Credentials")
 @click.pass_context
-def cli(ctx, cmd,reconfig):
-    """buxcli - Run commands with automatic email notifications"""
-    
+def cli(ctx, cmd, reconfig):
+
+    # If user wants reconfig — delete file and setup again
     if reconfig:
-        click.echo(click.style("🔧 Reconfiguring email Credentials...\n", fg="yellow"))
-        setup_env() 
-    ok = setup_env()
-    if not ok:
-        click.echo(click.style("❌ Email setup failed. Aborting command.\n", fg="red", bold=True))
+        if os.path.exists(ENV_FILE):
+            os.remove(ENV_FILE)
         setup_env()
-        # sys.exit(1)  # 🚫 ensure stop before running any command
+
+    # First-time setup (only if env file missing)
+    if not os.path.exists(ENV_FILE):
+        ok = setup_env()
+        if not ok:
+            click.echo(click.style("❌ Email setup failed. Aborting command.\n", fg="red"))
+            return
 
     if ctx.invoked_subcommand is None and not cmd:
         return
-    elif cmd:
+
+    if cmd:
         run_command(cmd)
+
 
 
 @cli.command()
