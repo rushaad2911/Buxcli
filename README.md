@@ -2,9 +2,9 @@
 
 BuxCLI is a lightweight command-line utility that runs any shell command and instantly sends email notifications on:
 
-✅ Success
-❌ Failure
-🚀 Server started (auto-detects “server ready” messages)
+### 1) ✅ Success
+### 2) ❌ Failure
+### 3) 🚀 Server started (auto-detects “server ready” messages)
 
 Perfect for developers and DevOps engineers who want real-time alerts without monitoring their terminal.
 
@@ -66,7 +66,25 @@ Commands example:
   buxcli docker pull nginx
 
 ```
+---
 
+## 🔗 Example
+### 1) Long Running Commands
+
+```bash
+- buxcli docker pull nginx
+
+- buxcli flutter build apk
+
+# send mail on sucess or failure
+```
+### 2) Server Starting commands
+
+```bash
+- buxcli python manage.py runserver
+
+# send mail on server starting
+```
 ---
 
 ## 🤝 Contributing
