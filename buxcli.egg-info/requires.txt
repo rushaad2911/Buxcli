@@ -1,4 +1,0 @@
-inquirer
-rich
-click
-dotenv
