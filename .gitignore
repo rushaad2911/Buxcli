@@ -1,0 +1,13 @@
+__pycache__
+.vscode
+.pypirc
+.env
+.github/*
+build/*
+dist/*
+*.egg-info/*
+__pycache__/*
+*.pyc
+setup.py
+*.toml
+upload.sh
