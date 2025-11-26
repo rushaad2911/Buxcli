@@ -7,7 +7,7 @@ from .mail import *
 import sys
 import os
 import logging
-
+from .version import __version__
 
 # --- Force Windows console to UTF-8 ---
 if os.name == "nt":
@@ -84,9 +84,17 @@ def run_command(command_list):
 
 @click.group(cls=BuxCLI, invoke_without_command=True)
 @click.argument("cmd", nargs=-1)
+@click.option("--version", is_flag=True, help="Show current BuxCLI version")
 @click.option("--reconfig",is_flag=True, help="Reconfigure email Credentials")
 @click.pass_context
 def cli(ctx, cmd, reconfig):
+
+
+    # Show version and exit
+    if version:
+        click.echo(click.style(f"BuxCLI Version: {__version__}", fg="green", bold=True))
+        return
+
 
     # If user wants reconfig — delete file and setup again
     if reconfig:
