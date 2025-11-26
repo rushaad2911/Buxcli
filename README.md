@@ -1,41 +1,48 @@
-# Buxcli 🚀
+# ⚡ BuxCLI 🚀  
+Run any command + get instant email notifications
 
-BuxCLI is a lightweight command-line utility that runs any shell command and instantly sends email notifications on:
+BuxCLI is a lightweight command-line tool that runs shell commands and sends instant **email alerts** when your command:
 
-### 1) ✅ Success
-### 2) ❌ Failure
-### 3) 🚀 Server started (auto-detects “server ready” messages)
+1️⃣ **Succeeds**  
+2️⃣ **Fails**  
+3️⃣ **Server starts** (auto-detects “server ready” messages)
 
-Perfect for developers and DevOps engineers who want real-time alerts without monitoring their terminal.
+Perfect for developers, sysadmins, and DevOps engineers who don’t want to stare at terminals.
+
+---
+
+# 📑 Table of Contents
+
+- [Features](#-features)  
+- [Installation](#-installation)  
+- [Usage Examples](#-usage-examples)  
+  - [Long Running Commands](#1-long-running-commands)  
+  - [Server Startup Detection](#2-server-starting-commands)  
+- [Contributing](#-contributing)  
+- [Contact](#-contact)  
+- [License](#-license)
 
 ---
 
 ## ✨ Features
 
-🔔 Email Alerts for success, failure, or server startup
-
-🔐 Secure Gmail App Password Setup
-
-💬 Test Email during first-time configuration
-
-🔄 Auto Retry if email credentials are incorrect
-
-🎨 Beautiful CLI Output with colors + ASCII banner
-
-🧪 Works with all commands (e.g., Python, Django, Docker, Node, Bash)  
+- 🔔 Email alerts for **success**, **failure**, or **server startup**
+- 🔐 Secure Gmail App Password setup
+- 💬 Test email option during initial setup
+- 🔄 Automatic retry if credentials are invalid
+- 🎨 Colorful CLI output with ASCII banner
+- 🧪 Works with all commands (Python, Django, Docker, Node, Bash, etc.)
 
 ---
 
 ## 💻 Installation
 
-Install via pip:
+Install using pip:
 
 ```bash
 pip install buxcli
 ```
-
-Check Installation:
-
+Check Instalation
 ```bash
 buxcli --help
 ```
